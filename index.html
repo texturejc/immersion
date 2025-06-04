@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philosophical Portraits</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Philosophical Portraits</h1>
+        <p class="subtitle">Click to discover another thinker</p>
+        <div class="image-container">
+            <img id="displayed-image" src="" alt="Random portrait" class="fade-in">
+        </div>
+    </div>
+
+    <script>
+        const images = [
+            'images/change.jpeg',
+            'images/cls.jpeg',
+            'images/ronell.jpeg',
+            'images/woolf.jpeg',
+            'images/cioran.jpeg',
+            'images/masc.jpeg',
+            'images/solnit.jpeg'
+        ];
+
+        // Preload images
+        images.forEach(src => {
+            const img = new Image();
+            img.src = src;
+        });
+
+        // Function to get a random image that's not the current one
+        function getRandomImage(currentSrc) {
+            let availableImages = images.filter(src => src !== currentSrc);
+            if (availableImages.length === 0) availableImages = images;
+            const randomIndex = Math.floor(Math.random() * availableImages.length);
+            return availableImages[randomIndex];
+        }
+
+        // Display initial random image
+        const displayedImage = document.getElementById('displayed-image');
+        displayedImage.src = getRandomImage('');
+
+        // Change image on click
+        displayedImage.addEventListener('click', () => {
+            displayedImage.classList.remove('fade-in');
+            displayedImage.classList.add('fade-out');
+            
+            setTimeout(() => {
+                displayedImage.src = getRandomImage(displayedImage.src);
+                displayedImage.classList.remove('fade-out');
+                displayedImage.classList.add('fade-in');
+            }, 300);
+        });
+
+        // Remove fade-in class after animation completes to allow re-animation
+        displayedImage.addEventListener('animationend', () => {
+            if (displayedImage.classList.contains('fade-in')) {
+                displayedImage.classList.remove('fade-in');
+            }
+        });
+    </script>
+</body>
+</html>

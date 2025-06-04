@@ -1,0 +1,84 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Playfair Display', serif;
+    background-color: #f5f5f5;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+.container {
+    max-width: 800px;
+    padding: 2rem;
+}
+
+h1 {
+    font-weight: 500;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.subtitle {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.image-container {
+    margin: 2rem auto;
+    max-width: 600px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+#displayed-image {
+    max-width: 100%;
+    max-height: 70vh;
+    display: block;
+    cursor: pointer;
+    border: 15px solid white;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+
+#displayed-image:hover {
+    transform: scale(1.02);
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.fade-out {
+    animation: fadeOut 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .image-container {
+        margin: 1rem auto;
+    }
+    
+    #displayed-image {
+        border-width: 10px;
+    }
+}
